@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - develop
   pull_request:
     branches:
       - master
@@ -29,11 +30,13 @@ jobs:
 
         run: |
           echo ${{ github.base_ref }}
+          echo ${{ github.ref_name }}
           npm install
   deploy:
+    name: "deploy to develop"
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' &&  github.ref_name == 'develop'
     steps:
       - run: echo "I am deploy"
       - name: Branch Name
