@@ -1,5 +1,8 @@
 run-name: "First CICD  by @${{ github.actor }}"
 on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     name: build_job1
