@@ -32,11 +32,23 @@ jobs:
           echo ${{ github.base_ref }}
           echo ${{ github.ref_name }}
           npm install
-  deploy:
-    name: "deploy to develop"
+  deploy-dev:
+    environment: dev
+    name: "deploy-dev"
     runs-on: ubuntu-latest
     needs: build
     if: github.event_name == 'push' &&  github.ref_name == 'develop'
+    steps:
+      - run: echo "I am deploy"
+      - name: Branch Name
+        run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
+
+  deploy-prod:
+    environment: prod
+    name: "deploy-prod"
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' &&  github.ref_name == 'master'
     steps:
       - run: echo "I am deploy"
       - name: Branch Name
