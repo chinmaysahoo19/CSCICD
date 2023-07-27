@@ -25,12 +25,14 @@ jobs:
 
       - name: Building Nodejs
         uses: actions/setup-node@v3
-
+        with:
+            node-version:  '16.16.0'
       - name: Build
         run: |
           echo ${{ github.base_ref }}
           echo ${{ github.ref_name }}
           npm install
+          npm run build
           pwd
           ls -altr
       - name: Upload artifact for deployment job
