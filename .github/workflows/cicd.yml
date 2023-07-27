@@ -41,8 +41,8 @@ jobs:
     steps:
       - run: |
          echo "I am deploy"
-        pwd
-        ls  -altr
+         pwd
+         ls  -altr
       - name: Branch Name
         run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
   deploy-stage:
