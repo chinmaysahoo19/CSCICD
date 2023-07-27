@@ -5,6 +5,7 @@ on:
       - master
 jobs:
   build:
+    name: build_job1
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,3 +16,8 @@ jobs:
       - name: Build
         run: |
           npm install
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: echo "I am deploy"
