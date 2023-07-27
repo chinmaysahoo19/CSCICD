@@ -32,6 +32,8 @@ jobs:
           echo ${{ github.base_ref }}
           echo ${{ github.ref_name }}
           npm install
+          pwd
+          ls -altr
   deploy-dev:
     environment: dev
     name: "deploy-dev"
