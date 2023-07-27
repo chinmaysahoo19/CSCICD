@@ -27,13 +27,18 @@ jobs:
         uses: actions/setup-node@v3
 
       - name: Build
-
         run: |
           echo ${{ github.base_ref }}
           echo ${{ github.ref_name }}
           npm install
           pwd
           ls -altr
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-app
+          path: .
+
   deploy-dev:
     environment: dev
     name: "deploy-dev"
@@ -41,6 +46,10 @@ jobs:
     needs: build
     if: github.event_name == 'push' &&  github.ref_name == 'develop'
     steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: node-app
       - run: |
          echo "I am deploy"
          pwd
