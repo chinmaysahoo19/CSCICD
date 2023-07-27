@@ -21,3 +21,5 @@ jobs:
     needs: build
     steps:
       - run: echo "I am deploy"
+      - name: Branch Name
+        run: echo running on branch ${GITHUB_REF##*/}
