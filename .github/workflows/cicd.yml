@@ -27,6 +27,7 @@ jobs:
 
       - name: Build
         run: |
+          echo ${{ github.base_ref }}
           npm install
   deploy:
     runs-on: ubuntu-latest
