@@ -22,4 +22,4 @@ jobs:
     steps:
       - run: echo "I am deploy"
       - name: Branch Name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
