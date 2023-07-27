@@ -14,7 +14,7 @@ jobs:
       - name: GITHUB_REF_TYPE
         run: "echo GITHUB_REF_TYPE :  ${GITHUB_REF_TYPE}"
       - name: GITHUB_REF
-        run: "echo GITHUB_REF :  ${GITHUB_REF_TYPE}"
+        run: "echo GITHUB_REF :  ${GITHUB_REF}"
 
       - name: Building Nodejs
         uses: actions/setup-node@v3
