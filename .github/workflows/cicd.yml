@@ -1,0 +1,12 @@
+run-name: "First CICD  by @${{ github.actor }}"
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Building Nodejs
+        run: |
+          npm install
