@@ -59,6 +59,10 @@ jobs:
     needs: build
     if: github.event_name == 'push' &&  github.ref_name == 'develop'
     steps:
+      - run: |
+          pwd
+          ls  -ltr
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
