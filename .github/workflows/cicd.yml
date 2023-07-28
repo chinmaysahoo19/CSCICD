@@ -47,6 +47,7 @@ jobs:
     outputs:
       git_sha: ${{ steps.get_buildinfo.outputs.git_sha }}
 
+
   deploy-dev:
     environment: dev
     name: "deploy-dev"
