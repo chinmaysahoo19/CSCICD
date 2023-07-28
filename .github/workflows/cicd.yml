@@ -22,7 +22,11 @@ jobs:
         run: "echo GITHUB_REF :  ${GITHUB_REF}"
       - name: GITHUB_BASE_REF
         run: "echo GITHUB_BASE_REF :  ${GITHUB_BASE_REF}"
-
+      - name: Get the buildinfo
+        id: get_buildinfo
+        run: |
+          GIT_SH=`echo -n ${{github.sha}}`
+          echo ::set-output name=GIT_SH::${GIT_SH}  ## Git latest SHA hash
       - name: Building Nodejs
         uses: actions/setup-node@v3
         with:
@@ -39,7 +43,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: node-hello
+          path: .
+    outputs:
+      git_pr_sha: ${{ steps.get_buildinfo.outputs.git_pr_sha }}
 
   deploy-dev:
     environment: dev
@@ -56,6 +62,7 @@ jobs:
          echo "I am deploy"
          pwd
          ls  -altr
+         echo "${{ needs.build.outputs.git_sha }}"
       - name: Branch Name
         run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
   deploy-stage:
