@@ -26,8 +26,9 @@ jobs:
         id: get_buildinfo
         run: |
           GIT_SH=`echo -n ${{github.sha}}`
-          echo ::set-output name=GIT_SH::${GIT_SH}  ## Git latest SHA hash
-          echo "{myname}={chinmaya}" >> $GITHUB_OUTPUT
+          echo ::set-output name=GIT_SHA::${GIT_SHA}  ## Git latest SHA hash
+          echo "{myname}=chinmaya" >> $GITHUB_OUTPUT
+          echo "{GIT_SHA}=${GIT_SHA}" >> $GITHUB_OUTPUT
 
       - name: Building Nodejs
         uses: actions/setup-node@v3
@@ -68,6 +69,7 @@ jobs:
          pwd
          ls  -altr
          echo "${{ needs.build.outputs.output1 }}"
+          echo "${{ needs.build.outputs.git_sha }}"
       - name: Branch Name
         run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
   deploy-stage:
