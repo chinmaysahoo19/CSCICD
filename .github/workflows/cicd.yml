@@ -27,6 +27,8 @@ jobs:
         run: |
           GIT_SH=`echo -n ${{github.sha}}`
           echo ::set-output name=GIT_SH::${GIT_SH}  ## Git latest SHA hash
+          echo "{myname}={chinmaya}" >> $GITHUB_OUTPUT
+
       - name: Building Nodejs
         uses: actions/setup-node@v3
         with:
@@ -60,6 +62,7 @@ jobs:
         with:
           name: node-app
       - run: |
+          env
          echo "I am deploy"
          pwd
          ls  -altr
