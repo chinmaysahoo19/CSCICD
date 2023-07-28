@@ -25,10 +25,10 @@ jobs:
       - name: Get the buildinfo
         id: get_buildinfo
         run: |
-          GIT_SH=`echo -n ${{github.sha}}`
+          GIT_SHA=`echo -n ${{github.sha}}`
           echo ::set-output name=GIT_SHA::${GIT_SHA}  ## Git latest SHA hash
-          echo "{myname}=chinmaya" >> $GITHUB_OUTPUT
-          echo "{GIT_SHA}=${GIT_SHA}" >> $GITHUB_OUTPUT
+          echo "myname=chinmaya" >> $GITHUB_OUTPUT
+          echo "GIT_SHA=${GIT_SHA}" >> $GITHUB_OUTPUT
 
       - name: Building Nodejs
         uses: actions/setup-node@v3
