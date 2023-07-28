@@ -62,7 +62,7 @@ jobs:
         with:
           name: node-app
       - run: |
-          env
+         env
          echo "I am deploy"
          pwd
          ls  -altr
