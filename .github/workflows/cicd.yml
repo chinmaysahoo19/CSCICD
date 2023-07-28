@@ -45,7 +45,7 @@ jobs:
           name: node-app
           path: .
     outputs:
-      git_pr_sha: ${{ steps.get_buildinfo.outputs.git_pr_sha }}
+      git_sha: ${{ steps.get_buildinfo.outputs.git_sha }}
 
   deploy-dev:
     environment: dev
