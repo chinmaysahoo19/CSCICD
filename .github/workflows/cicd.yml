@@ -48,6 +48,7 @@ jobs:
           path: .
     outputs:
       git_sha: ${{ steps.get_buildinfo.outputs.git_sha }}
+      output1: ${{ steps.get_buildinfo.outputs.myname }}
 
 
   deploy-dev:
@@ -66,7 +67,7 @@ jobs:
          echo "I am deploy"
          pwd
          ls  -altr
-         echo "${{ needs.build.outputs.git_sha }}"
+         echo "${{ needs.build.outputs.output1 }}"
       - name: Branch Name
         run: "echo running on BRANCH_NAME: ${{ github.base_ref || github.ref_name }}"
   deploy-stage:
