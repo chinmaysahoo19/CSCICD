@@ -25,6 +25,8 @@ jobs:
       - name: Get the buildinfo
         id: get_buildinfo
         run: |
+          pwd
+          ls -altr
           ./setupenv.sh
           # GIT_SHA=`echo -n ${{github.sha}}`
           # echo ::set-output name=GIT_SHA::${GIT_SHA}  ## Git latest SHA hash
