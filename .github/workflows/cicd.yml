@@ -23,10 +23,12 @@ jobs:
         run: "echo GITHUB_REF :  ${GITHUB_REF}"
       - name: GITHUB_BASE_REF
         run: "echo GITHUB_BASE_REF :  ${GITHUB_BASE_REF}"
+      - run:  echo "MYENV=STAGE" >> $GITHUB_ENV
       - name: Get the buildinfo
         id: get_buildinfo
+
         run: |
-          echo "MYENV=STAGE" >> $GITHUB_ENV
+         
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
           pwd
           ls -altr
