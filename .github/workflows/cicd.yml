@@ -13,7 +13,7 @@ jobs:
     name: build_job1
     runs-on: ubuntu-latest
     env:
-      MYENV: STAGE
+      MYENV: STAGE1
     steps:
       - uses: actions/checkout@v3
       - name : GITHUB_REF_NAME
