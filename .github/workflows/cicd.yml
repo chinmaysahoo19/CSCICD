@@ -11,7 +11,7 @@ on:
 jobs:
   call_callme1:
     name: call_callme1
-    uses: .github/workflows/callme1.yml
+    uses: ./.github/workflows/callme1.yml
   build:
     name: build_job1
     runs-on: ubuntu-latest
