@@ -1,5 +1,4 @@
-on:
-  workflow_call
+on: workflow_call
 jobs:
   callme_job1:
     name: callme_job1
