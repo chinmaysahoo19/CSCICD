@@ -26,7 +26,7 @@ jobs:
         id: get_buildinfo
         run: |
           MYENV=STAGE
-          echo "API_KEY=${{ secrets.${STAGE}_API_KEY }}"
+          echo "API_KEY=${{ secrets[format('{0}_A', env.MYENV)] }}
           pwd
           ls -altr
           ./.github/workflows/setupenv.sh
