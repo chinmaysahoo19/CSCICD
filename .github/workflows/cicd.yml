@@ -26,7 +26,7 @@ jobs:
       - name: Get the buildinfo
         id: get_buildinfo
         run: |
-          echo "MYENV=STAGE" > >> $GITHUB_ENV
+          echo "MYENV=STAGE" >> $GITHUB_ENV
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
           pwd
           ls -altr
