@@ -31,7 +31,7 @@ jobs:
         id: get_buildinfo
 
         run: |
-         
+         echo "ddddd - ${YOURNAME}"
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
           pwd
           ls -altr
