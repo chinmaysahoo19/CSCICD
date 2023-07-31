@@ -1,0 +1,8 @@
+on:
+  workflow_call
+jobs:
+  callme_job1:
+    name: callme_job1
+    runs-on: ubuntu-latest
+    steps:
+      - run: env
