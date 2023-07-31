@@ -4,6 +4,7 @@ on:
     inputs:
       image_name:
         type: string
+        required: false
 
 jobs:
   callme_job1:
