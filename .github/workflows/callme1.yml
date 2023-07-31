@@ -5,11 +5,14 @@ on:
       image_name:
         type: string
         required: false
+      env_name:
+        type: string
+        required: false
 env:
   IMAGE_NAME: ${{inputs.image_name}}
 jobs:
   callme_job1:
-    name: callme_job1
+    name: ${{inputs.env_name}}
     runs-on: ubuntu-latest
     steps:
       - run: env

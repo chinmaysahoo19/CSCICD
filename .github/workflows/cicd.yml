@@ -64,10 +64,10 @@ jobs:
 
   call_callme1:
     needs: build
-    name: call_callme1
     uses: ./.github/workflows/callme1.yml
     with:
       image_name: CHINMAYASAHOO
+      env_name: DEV
   deploy-dev:
     environment: dev
     name: "deploy-dev"
