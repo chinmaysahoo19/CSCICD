@@ -5,7 +5,8 @@ on:
       image_name:
         type: string
         required: false
-
+env:
+  IMAGE_NAME: ${{input.image_name}}
 jobs:
   callme_job1:
     name: callme_job1

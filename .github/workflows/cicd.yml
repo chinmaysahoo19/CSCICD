@@ -14,6 +14,8 @@ jobs:
   call_callme1:
     name: call_callme1
     uses: ./.github/workflows/callme1.yml
+    with:
+      image_name: CHINMAYASAHOO
   build:
     name: build_job1
     runs-on: ubuntu-latest
