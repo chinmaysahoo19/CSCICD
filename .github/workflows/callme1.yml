@@ -1,4 +1,5 @@
-on: workflow_call
+name: My First Callme Work flow.
+on:  workflow_call
 jobs:
   callme_job1:
     name: callme_job1
