@@ -1,5 +1,10 @@
 name: My First Callme Work flow.
-on:  workflow_call
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        type: string
+
 jobs:
   callme_job1:
     name: callme_job1
