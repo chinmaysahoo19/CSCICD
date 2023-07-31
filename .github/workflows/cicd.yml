@@ -12,6 +12,8 @@ jobs:
   build:
     name: build_job1
     runs-on: ubuntu-latest
+    env:
+      MYENV: STAGE
     steps:
       - uses: actions/checkout@v3
       - name : GITHUB_REF_NAME
@@ -25,7 +27,6 @@ jobs:
       - name: Get the buildinfo
         id: get_buildinfo
         run: |
-          MYENV=STAGE >> $GITHUB_ENV
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
           pwd
           ls -altr
