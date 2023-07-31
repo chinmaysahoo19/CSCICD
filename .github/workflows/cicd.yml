@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - master
+env:
+  myname: chinmay
 
 jobs:
   call_callme1:
