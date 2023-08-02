@@ -67,10 +67,12 @@ jobs:
   call_callme1:
     needs: build
     uses: ./.github/workflows/callme1.yml
+    secrets:
+      secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
       image_name: CHINMAYASAHOO
       env_name: STAGE
-      secret_name: ${{ secrets.envPAT }}
+
 
   deploy-dev:
     environment: dev
