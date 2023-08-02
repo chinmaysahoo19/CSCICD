@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - master
-extends:
-  - .github/workflows/callme1.yml
 env:
   myname: chinmay
 
@@ -72,6 +70,7 @@ jobs:
     with:
       image_name: CHINMAYASAHOO
       env_name: STAGE
+      secret_name: ${{ secrets.STAGE_API_KEY }}
 
   deploy-dev:
     environment: dev
