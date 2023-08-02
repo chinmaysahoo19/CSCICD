@@ -26,11 +26,13 @@ jobs:
         run: "echo GITHUB_REF :  ${GITHUB_REF}"
       - name: GITHUB_BASE_REF
         run: "echo GITHUB_BASE_REF :  ${GITHUB_BASE_REF}"
-      - run:  echo "MYENV=STAGE" >> $GITHUB_ENV
+      - run:  echo "MYENV=PROD" >> $GITHUB_ENV
       - name: Get the buildinfo
         id: get_buildinfo
 
         run: |
+          GID=${{ vars[format('{0}_GOOGLE_ANALYTICS_ID', env.MYENV)] }}"
+          sed -e "s/G-W89RTWJ776/$GID/g" index.html
           echo "xxxxxxxx - ${{ secrets.STAGE_API_KEY }} "
           echo "ddddd - ${{ vars.YOURNAME }}"
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
