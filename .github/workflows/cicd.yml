@@ -70,8 +70,8 @@ jobs:
     secrets: inherit
       #secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
-      image_name: ${{env.YOURNAME}}
-      secret_name: ${YOURNAME}
+      image_name: ${{ env.YOURNAME }}
+      secret_name: ${{ var.YOURNAME }}
       env_name: STAGE
 
 
