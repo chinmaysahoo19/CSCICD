@@ -68,6 +68,7 @@ jobs:
 
   call_callme1:
     needs: build
+    if: github.event_name == 'push' &&  github.ref_name == 'main'
     uses: ./.github/workflows/callme1.yml
     secrets: inherit
       #secret_name: ${{ secrets.STAGE_API_KEY }}
