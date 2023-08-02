@@ -12,7 +12,7 @@ on:
       secret_name:
         required: false
 env:
-  IMAGE_NAME: ${{inputs.image_name}}
+  IMAGE_NAME:  echo "API_KEY=${{ secrets[format('{0}_API_KEY', inputs.env_name)] }}"
 jobs:
   callme_job1:
     name: ${{inputs.env_name}}
