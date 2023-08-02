@@ -32,7 +32,7 @@ jobs:
 
         run: |
           echo "xxxxxxxx - ${{ secrets.STAGE_API_KEY }} "
-          echo "ddddd - ${{ env.YOURNAME }}"
+          echo "ddddd - ${{ vars.YOURNAME }}"
           echo "API_KEY=${{ secrets[format('{0}_API_KEY', env.MYENV)] }}"
           pwd
           ls -altr
@@ -41,6 +41,7 @@ jobs:
           # echo ::set-output name=GIT_SHA::${GIT_SHA}  ## Git latest SHA hash
           # echo "myname=chinmaya" >> $GITHUB_OUTPUT
           # echo "GIT_SHA=${GIT_SHA}" >> $GITHUB_OUTPUT
+          env
 
       - name: Building Nodejs
         uses: actions/setup-node@v3

@@ -16,5 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-         env
          echo "yyyyyyyy   - ${{ secrets.STAGE_API_KEY }} "
+         echo "eeeee - ${{ vars.YOURNAME }}"
+         env
