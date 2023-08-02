@@ -70,7 +70,7 @@ jobs:
     with:
       image_name: CHINMAYASAHOO
       env_name: STAGE
-      secret_name: ${{ secrets.STAGE_API_KEY }}
+      secret_name: ${{ secrets.envPAT }}
 
   deploy-dev:
     environment: dev
