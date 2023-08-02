@@ -15,4 +15,6 @@ jobs:
     name: ${{inputs.env_name}}
     runs-on: ubuntu-latest
     steps:
-      - run: env
+      - run: |
+         env
+         echo "${{ secrets.SECRET_NAME }} "
