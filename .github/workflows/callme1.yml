@@ -17,4 +17,4 @@ jobs:
     steps:
       - run: |
          env
-         echo "${{ secrets.SECRET_NAME }} "
+         echo "yyyyyyyy   - ${{ secrets.SECRET_NAME }} "
