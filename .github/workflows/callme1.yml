@@ -8,6 +8,9 @@ on:
       env_name:
         type: string
         required: false
+      secret_name:
+        type: string
+        required: false
 env:
   IMAGE_NAME: ${{inputs.image_name}}
 jobs:
@@ -18,4 +21,5 @@ jobs:
       - run: |
          echo "yyyyyyyy   - ${{ secrets.STAGE_API_KEY }} "
          echo "eeeee - ${{ vars.YOURNAME }}"
+          echo "FFFF  ----  ${{inputs.secret_name}}"
          env

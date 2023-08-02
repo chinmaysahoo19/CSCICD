@@ -69,7 +69,8 @@ jobs:
     uses: ./.github/workflows/callme1.yml
     with:
       image_name: CHINMAYASAHOO
-      env_name: DEV
+      env_name: STAGE
+      secret_name: ${{ secrets[format('{0}_API_KEY', 'STAGE')] }}
   deploy-dev:
     environment: dev
     name: "deploy-dev"
