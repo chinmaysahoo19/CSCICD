@@ -62,7 +62,9 @@ jobs:
           path: /home/runner/work/CSCICD/CSCICD
     outputs:
       git_sha: ${{ steps.get_buildinfo.outputs.git_sha }}
-      output1: ${{ steps.get_buildinfo.outputs.myname }}
+      myname: ${{ steps.get_buildinfo.outputs.myname }}
+      env_name: "STAGE"
+
 
   call_callme1:
     needs: build
@@ -71,7 +73,7 @@ jobs:
       #secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
       image_name: ${{ vars.YOURNAME }}
-      env_name: ${{ vars.myname }}
+      env_name: "${{ needs.build.outputs.env_name }}"
 
 
   deploy-dev:

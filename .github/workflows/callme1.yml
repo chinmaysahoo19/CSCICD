@@ -22,4 +22,5 @@ jobs:
          echo "yyyyyyyy   - ${{ secrets.STAGE_API_KEY }} "
          echo "eeeee - ${{ vars.YOURNAME }}"
           echo "FFFF  ----  ${{secrets.secret_name}}"
+          echo "${{inputs.image_name}}"
          env
