@@ -71,7 +71,7 @@ jobs:
       #secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
       image_name: ${{ vars.YOURNAME }}
-      env_name: ${{ env.myname }}
+      env_name: ${{ vars.myname }}
 
 
   deploy-dev:
