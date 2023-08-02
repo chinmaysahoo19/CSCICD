@@ -31,7 +31,7 @@ jobs:
         id: get_buildinfo
 
         run: |
-          GID=${{ vars[format('{0}_GOOGLE_ANALYTICS_ID', env.MYENV)] }}"
+          GID=${{ vars[format('{0}_GOOGLE_ANALYTICS_ID', env.MYENV)] }}
           sed -e "s/G-W89RTWJ776/$GID/g" index.html
           echo "xxxxxxxx - ${{ secrets.STAGE_API_KEY }} "
           echo "ddddd - ${{ vars.YOURNAME }}"
