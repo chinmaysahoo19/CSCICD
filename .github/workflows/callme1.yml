@@ -21,5 +21,5 @@ jobs:
       - run: |
          echo "yyyyyyyy   - ${{ secrets.STAGE_API_KEY }} "
          echo "eeeee - ${{ vars.YOURNAME }}"
-          echo "FFFF  ----  ${{inputs.secret_name}}"
+          echo "FFFF  ----  ${{secrets.secret_name}}"
          env
