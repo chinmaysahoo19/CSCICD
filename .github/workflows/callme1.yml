@@ -15,7 +15,7 @@ env:
   IMAGE_NAME:  ${{inputs.image_name}}
   API_KEY:  ${{ secrets[format('{0}_API_KEY', secrets.secret_name)] }}
 jobs:
-  callme_job1:
+  deploy:
     name: ${{inputs.env_name}}
     runs-on: ubuntu-latest
     steps:
