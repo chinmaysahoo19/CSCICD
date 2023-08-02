@@ -70,10 +70,7 @@ jobs:
     secrets: inherit
       #secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
-      project-id: ${{ vars.PROJECT_ID }}
-      environment: other
-      cluster-name: ${{ vars.CLUSTER_NAME }}
-      region: ${{ vars.REGION }}
+      image_name: ${{ vars.YOURNAME }}
 
 
   deploy-dev:
