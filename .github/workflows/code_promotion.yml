@@ -27,3 +27,4 @@ jobs:
         run: |
           echo  The tags are ${{ inputs.tags }}
           ls -altr
+          ./.github/workflows/setupenv.sh
