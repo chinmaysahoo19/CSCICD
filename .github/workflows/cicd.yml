@@ -8,7 +8,7 @@ on:
     branches:
       - master
 env:
-  myname: chinmay
+  myname: CHINMAYA
 
 jobs:
 
@@ -31,7 +31,8 @@ jobs:
         id: get_buildinfo
 
         run: |
-          GID=${{ vars[format('{0}_GOOGLE_ANALYTICS_ID', env.MYENV)] }}
+          echo echo "${{ steps.string.outputs.lowercase }}"
+          GID=${{ env.MYENV.lowercase }}
           sed -e "s/G-W89RTWJ776/$GID/g" index.html
           echo "xxxxxxxx - ${{ secrets.STAGE_API_KEY }} "
           echo "ddddd - ${{ vars.YOURNAME }}"
