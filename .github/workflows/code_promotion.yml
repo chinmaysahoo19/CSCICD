@@ -23,8 +23,9 @@ jobs:
   print-tag:
     runs-on: ubuntu-latest
     steps:
-      - name: Print the input tag to STDOUT
-        run: |
-          echo  The tags are ${{ inputs.tags }}
-          ls -altr
-          ./.github/workflows/setupenv.sh
+        - uses: actions/checkout@master
+          with:
+            name: chinmaysahoo19/TesProject.git     <-- clone https://github.com/org1/repo1
+        - run: |
+            ls  -ltr
+            
