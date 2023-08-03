@@ -24,4 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ inputs.tags }}
+        run: |
+          echo  The tags are ${{ inputs.tags }}
+          ls -altr
