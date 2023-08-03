@@ -31,8 +31,7 @@ jobs:
         id: get_buildinfo
 
         run: |
-          echo echo "${{ steps.string.outputs.lowercase }}"
-          GID=${{ env.MYENV.lowercase }}
+          GID=${{ env.MYENV }}
           echo $GID
           sed -e "s/G-W89RTWJ776/$GID/g" index.html
           echo "xxxxxxxx - ${{ secrets.STAGE_API_KEY }} "
