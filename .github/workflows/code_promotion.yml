@@ -28,4 +28,5 @@ jobs:
             name: chinmaysahoo19/TesProject.git     <-- clone https://github.com/org1/repo1
         - run: |
             ls  -ltr
+            git branch -a
             
