@@ -2,8 +2,8 @@ run-name: "First CICD  by @${{ github.actor }}"
 on:
   push:
     branches:
-      - master1
-      - develop1
+      - master
+      - develop
   pull_request:
     branches:
       - master
