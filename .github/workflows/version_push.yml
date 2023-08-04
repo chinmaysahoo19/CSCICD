@@ -9,5 +9,5 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           cd node-hello
-          yarn install
-          ./git-utils.sh version-push
+          #yarn install
+          ./.github/workflows/git-utils.sh version-push
