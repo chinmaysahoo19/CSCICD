@@ -8,7 +8,8 @@ jobs:
 #          with:
 #            name: chinmaysahoo19/TesProject.git     <-- clone https://github.com/org1/repo1
         - run: |
-            git clone 
+            cd node-hello
+            yarn install
             ls  -ltr
             git branch -a
             
