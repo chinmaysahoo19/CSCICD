@@ -1,0 +1,75 @@
+#!/bin/bash
+set -e
+
+function configure_pk() {
+  echo "$GIT_SSH_PK" | base64 -d >id_rsa &&
+    mkdir -p ~/.ssh && cp id_rsa known_hosts ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
+}
+
+function git_configure() {
+  configure_pk
+  git config --global --add safe.directory "${CI_PROJECT_DIR}" &&
+    git config --global user.name "$GITLAB_USER_NAME" &&
+    git config --global user.email "$GITLAB_USER_EMAIL" &&
+    git remote set-url origin git@"$CI_SERVER_HOST":"$CI_PROJECT_PATH".git
+}
+
+function validate_version() {
+  GIT_TAG=$(git describe --abbrev=0 --tags)
+  PACKAGE_VERSION=v$(jq -r '.version' version.json)
+  if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
+    echo -e "\e[31mVersion does not match latest tag. Please change version in version.json to '${GIT_VERSION}'\e[39m"
+    exit 1
+  fi
+}
+
+function version-push() {
+  git checkout CI
+  git reset --hard origin/CI
+  BASE_DIR=$PWD
+  mv version.json package.json
+  yarn version --"$INCREMENT_TYPE" --no-git-tag-version --no-commit-hooks
+  version=$(jq -r '.version' package.json)
+  mv package.json version.json
+  cd $BASE_DIR
+  #echo "version=$version" > version.sh
+  git add version.json
+  git commit -m "$BUMP_VERSION_MESSAGE $version"
+  git tag -d v$version || true
+  git remote -v
+  git config --list
+  git tag v$version
+  git push origin v$version
+  git push origin CI
+}
+function clone_gitlab_repo() {
+    configure_pk
+    rm -rf /tmp/lib && mkdir /tmp/lib
+    git clone git@gitlab.com:samnasbo/gamehub/gitlab.git /tmp/lib
+    cd /tmp/lib
+    git checkout "${BRANCH_NAME}"
+    git pull origin "${BRANCH_NAME}"
+    cd -
+}
+
+case $1 in
+configure_pk)
+  configure_pk
+  ;;
+version-push)
+  #git_configure &&
+  validate_version && version-push
+  ;;
+validate_version)
+  validate_version
+  ;;
+git_configure)
+  git_configure
+  ;;
+clone_gitlab_repo)
+  clone_gitlab_repo
+  ;;
+*)
+  echo "Invalid Parameter"
+  ;;
+esac
