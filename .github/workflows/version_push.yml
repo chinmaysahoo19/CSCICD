@@ -1,5 +1,7 @@
 on:
   workflow_dispatch:
+env:
+  INCREMENT_TYPE: major
 jobs:
   print-tag:
     runs-on: ubuntu-latest
@@ -8,3 +10,4 @@ jobs:
       - run: |
           cd node-hello
           yarn install
+          ./git-utils.sh version-push

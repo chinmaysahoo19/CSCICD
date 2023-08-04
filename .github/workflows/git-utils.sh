@@ -8,10 +8,10 @@ function configure_pk() {
 
 function git_configure() {
   configure_pk
-  git config --global --add safe.directory "${CI_PROJECT_DIR}" &&
+  git config --global --add safe.directory "${master_PROJECT_DIR}" &&
     git config --global user.name "$GITLAB_USER_NAME" &&
     git config --global user.email "$GITLAB_USER_EMAIL" &&
-    git remote set-url origin git@"$CI_SERVER_HOST":"$CI_PROJECT_PATH".git
+    git remote set-url origin git@"$master_SERVER_HOST":"$master_PROJECT_PATH".git
 }
 
 function validate_version() {
@@ -24,8 +24,8 @@ function validate_version() {
 }
 
 function version-push() {
-  git checkout CI
-  git reset --hard origin/CI
+  git checkout master
+  git reset --hard origin/master
   BASE_DIR=$PWD
   mv version.json package.json
   yarn version --"$INCREMENT_TYPE" --no-git-tag-version --no-commit-hooks
@@ -40,7 +40,7 @@ function version-push() {
   git config --list
   git tag v$version
   git push origin v$version
-  git push origin CI
+  git push origin master
 }
 function clone_gitlab_repo() {
     configure_pk
