@@ -16,7 +16,7 @@ function git_configure() {
 
 function validate_version() {
   GIT_TAG=$(git describe --abbrev=0 --tags)
-  PACKAGE_VERSION=v$(jq -r '.version' version.json)
+  PACKAGE_VERSION=v$(jq -r '.version' package.json)
   if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
     echo -e "\e[31mVersion does not match latest tag. Please change version in version.json to '${GIT_VERSION}'\e[39m"
     exit 1
@@ -27,13 +27,11 @@ function version-push() {
   git checkout master
   git reset --hard origin/master
   BASE_DIR=$PWD
-  mv version.json package.json
   yarn version --"$INCREMENT_TYPE" --no-git-tag-version --no-commit-hooks
   version=$(jq -r '.version' package.json)
-  mv package.json version.json
   cd $BASE_DIR
   #echo "version=$version" > version.sh
-  git add version.json
+  git add packagepackage.json
   git commit -m "$BUMP_VERSION_MESSAGE $version"
   git tag -d v$version || true
   git remote -v
