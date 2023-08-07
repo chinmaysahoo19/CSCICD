@@ -10,4 +10,4 @@ jobs:
       - run: |
           cd node-hello
           #yarn install
-          ./.github/workflows/git-utils.sh version-push
+          ../.github/workflows/git-utils.sh version-push
