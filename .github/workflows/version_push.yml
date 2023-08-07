@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          cd node-hello
+          cd app
           #yarn install
           git tag
           ../.github/workflows/git-utils.sh version-push
