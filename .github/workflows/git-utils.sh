@@ -64,8 +64,7 @@ configure_pk)
   configure_pk
   ;;
 version-push)
-  #git_configure &&
-  validate_version && version-push
+  git_configure &&   validate_version && version-push
   ;;
 validate_version)
   validate_version
