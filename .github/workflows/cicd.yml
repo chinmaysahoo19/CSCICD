@@ -5,6 +5,9 @@ on:
       - master
     tags:
       - '*'
+  create:
+    tags:
+      - "*"
 
 env:
   myname: CHINMAYA
