@@ -9,7 +9,7 @@ function configure_pk() {
 function git_configure() {
   #configure_pk
   #git config --global --add safe.directory "${master_PROJECT_DIR}" &&
-    git config --global user.name "csahoo-samsung"
+    git config --global user.name "$GITHUB_ACTOR"
     #git config --global user.email "$GITLAB_USER_EMAIL" &&
     #git remote set-url origin git@"$master_SERVER_HOST":"$master_PROJECT_PATH".git
 }
@@ -65,7 +65,8 @@ configure_pk)
   configure_pk
   ;;
 version-push)
-  git_configure &&   validate_version && version-push
+  #git_configure &&
+  validate_version && version-push
   ;;
 validate_version)
   validate_version

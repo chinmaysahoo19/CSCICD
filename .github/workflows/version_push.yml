@@ -2,6 +2,7 @@ on:
   workflow_dispatch:
 env:
   INCREMENT_TYPE: patch
+  GITHUB_TOKEN: ${{ secrets.MYTOKEN }}
 jobs:
   print-tag:
     runs-on: ubuntu-latest
