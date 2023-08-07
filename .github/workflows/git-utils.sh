@@ -21,6 +21,7 @@ function validate_version() {
   ls -altr
   git remote -v
   git branch
+  git tag -l
   git tag
   git describe --abbrev=0 --tags
   GIT_TAG=$(git describe --abbrev=0 --tags)
