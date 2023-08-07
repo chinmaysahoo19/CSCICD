@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 function configure_pk() {
   echo "$GIT_SSH_PK" | base64 -d >id_rsa &&
