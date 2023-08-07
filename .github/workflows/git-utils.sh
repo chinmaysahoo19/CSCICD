@@ -14,6 +14,7 @@ function git_configure() {
     #git remote set-url origin git@"$master_SERVER_HOST":"$master_PROJECT_PATH".git
 }
 
+
 function validate_version() {
   env
   pwd
