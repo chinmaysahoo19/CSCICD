@@ -17,7 +17,10 @@ function git_configure() {
 function validate_version() {
   pwd
   ls -altr
-
+  git remote -v
+  git branch
+  git tag
+  git describe --abbrev=0 --tags
   GIT_TAG=$(git describe --abbrev=0 --tags)
   PACKAGE_VERSION=v$(jq -r '.version' package.json)
   if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
