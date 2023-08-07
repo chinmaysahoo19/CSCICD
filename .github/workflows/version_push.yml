@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 env:
-  INCREMENT_TYPE: major
+  INCREMENT_TYPE: patch
 jobs:
   print-tag:
     runs-on: ubuntu-latest
