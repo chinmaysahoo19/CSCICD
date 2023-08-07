@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.MYPAT }}
+#        with:
+#          token: ${{ secrets.MYPAT }}
       - run: |
           cd app
           #yarn install
