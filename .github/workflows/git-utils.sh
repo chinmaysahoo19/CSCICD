@@ -16,6 +16,7 @@ function git_configure() {
 
 function validate_version() {
   pwd
+  git pull
   ls -altr
   git remote -v
   git branch
