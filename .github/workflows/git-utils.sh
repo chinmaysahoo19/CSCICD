@@ -15,6 +15,9 @@ function git_configure() {
 }
 
 function validate_version() {
+  pwd
+  ls -altr
+
   GIT_TAG=$(git describe --abbrev=0 --tags)
   PACKAGE_VERSION=v$(jq -r '.version' package.json)
   if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
@@ -31,7 +34,7 @@ function version-push() {
   version=$(jq -r '.version' package.json)
   cd $BASE_DIR
   #echo "version=$version" > version.sh
-  git add packagepackage.json
+  git add package.json
   git commit -m "$BUMP_VERSION_MESSAGE $version"
   git tag -d v$version || true
   git remote -v
