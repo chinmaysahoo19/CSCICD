@@ -15,6 +15,7 @@ function git_configure() {
 }
 
 function validate_version() {
+  env
   pwd
   git pull
   ls -altr
@@ -31,6 +32,7 @@ function validate_version() {
 }
 
 function version-push() {
+  env
   git checkout master
   git reset --hard origin/master
   BASE_DIR=$PWD
