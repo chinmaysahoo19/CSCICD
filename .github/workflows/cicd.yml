@@ -35,33 +35,25 @@ jobs:
         id: get_buildinfo
 
         run: |
-  
-          if [[ ${GITHUB_REF_TYPE} == "tag" ]];then
-             echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-          else
-             echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
-          fi
-          
+          echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
           case "${GITHUB_REF_NAME}" in
-
-             "master"
-               SECRET_ENV_NAME=DEV
-               #echo "REACT_APP_CLIENTKEY=${{ secrets.DEV_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
-               ;;
-             "stage")
-               SECRET_ENV_NAME=STAGE
-               #echo "REACT_APP_CLIENTKEY=${{ secrets.STAGE_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
-             ;;
-             "prod") 
-                SECRET_ENV_NAME=PROD
-                #echo "REACT_APP_CLIENTKEY=${{ secrets.PROD_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
-             ;;
-           *)
-             SECRET_ENV_NAME=PR
+          "main")
+          SECRET_ENV_NAME=DEV
+          echo "REACT_APP_CLIENTKEY=${{ secrets.DEV_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
+          ;;
+          "stage")
+          SECRET_ENV_NAME=STAGE
+          echo "REACT_APP_CLIENTKEY=${{ secrets.STAGE_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
+          ;;
+          "prod") 
+          SECRET_ENV_NAME=PROD
+          echo "REACT_APP_CLIENTKEY=${{ secrets.PROD_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
+          ;;
+          *)
+          SECRET_ENV_NAME=PR
           ;;
           esac
           
-          env
           GID=${{ env.MYENV }}
           echo $GID
           sed -e "s/G-W89RTWJ776/$GID/g" index.html
@@ -80,7 +72,7 @@ jobs:
       - name: Building Nodejs
         uses: actions/setup-node@v3
         with:
-            node-version:  '16.16.0'
+          node-version:  '16.16.0'
       - name: Build
         run: |
           echo ${{ github.base_ref }}
@@ -105,7 +97,7 @@ jobs:
     if: github.event_name == 'push' &&  (github.ref_name == 'master' || github.ref_name == 'stage' || github.ref_name == 'develop')
     uses: ./.github/workflows/callme1.yml
     secrets: inherit
-      #secret_name: ${{ secrets.STAGE_API_KEY }}
+    #secret_name: ${{ secrets.STAGE_API_KEY }}
     with:
       image_name: ${{ vars.YOURNAME }}
       env_name: "${{ needs.build.outputs.env_name }}"
