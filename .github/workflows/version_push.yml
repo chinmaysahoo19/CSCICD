@@ -37,6 +37,7 @@ jobs:
         run: |
          
           cd app
+          git pull
           git describe --abbrev=0 --tags
           GIT_TAG=$(git describe --abbrev=0 --tags)
           PACKAGE_VERSION=v$(jq -r '.version' package.json)

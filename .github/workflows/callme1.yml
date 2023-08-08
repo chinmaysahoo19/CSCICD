@@ -20,7 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-         git describe --abbrev=0 --tags
          echo "yyyyyyyy   - ${{ secrets.STAGE_API_KEY }} "
          echo "eeeee - ${{ vars.YOURNAME }}"
           echo "FFFF  ----  ${{secrets.secret_name}}"
