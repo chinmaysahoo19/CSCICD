@@ -36,13 +36,7 @@ jobs:
 
         run: |
           set -x
-          if [[ ${GITHUB_REF_TYPE} == "tag" ]];then
-            echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
-            SECRET_ENV_NAME=DEV
-            echo "REACT_APP_CLIENTKEY=${{ secrets.DEV_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
-          else
-            echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
-          fi
+
           
           case "${GITHUB_REF_NAME}" in
           "main")
@@ -61,7 +55,13 @@ jobs:
             SECRET_ENV_NAME=PR
           ;;
           esac
-          
+          if [[ ${GITHUB_REF_TYPE} == "tag" ]];then
+            echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+            SECRET_ENV_NAME=DEV
+            echo "REACT_APP_CLIENTKEY=${{ secrets.DEV_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
+          else
+            echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
+          fi
           GID=${{ env.MYENV }}
           echo $GID
           sed -e "s/G-W89RTWJ776/$GID/g" index.html
