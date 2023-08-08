@@ -27,9 +27,7 @@ jobs:
 
       - name: Validate Version
         run: |
-          pwd
-          ls  -ltr
-          
+         
           cd app
           git describe --abbrev=0 --tags
           GIT_TAG=$(git describe --abbrev=0 --tags)
@@ -40,12 +38,12 @@ jobs:
           fi
       - name: Version Push
         run: |
+          BUMP_VERSION_MESSAGE='Version Push'
           cd app
           git checkout master
           git reset --hard origin/master
           yarn version --patch --no-git-tag-version --no-commit-hooks
           version=$(jq -r '.version' package.json)
-          #echo "version=$version" > version.sh
           git add package.json
           git commit -m "$BUMP_VERSION_MESSAGE $version"
           git tag -d v$version || true
