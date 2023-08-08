@@ -35,6 +35,7 @@ jobs:
         id: get_buildinfo
 
         run: |
+          set -x
           if [[ ${GITHUB_REF_TYPE} == "tag" ]];then
             echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
           else
