@@ -3,7 +3,7 @@ on:
 env:
   INCREMENT_TYPE: patch
   #GITHUB_TOKEN: ${{ secrets.MYPAT }}
-  GIT_SSH_PK: ${{ secrets.GIT_SSH_PK }}
+  #GIT_SSH_PK: ${{ secrets.GIT_SSH_PK }}
 jobs:
   print-tag:
     runs-on: ubuntu-latest

@@ -8,23 +8,15 @@ function configure_pk() {
 }
 
 function git_configure() {
-  configure_pk
-  git config --global --add safe.directory "*" &&
+  #configure_pk
+  #git config --global --add safe.directory "*" &&
     git config --global user.name "$GITHUB_ACTOR"
     #git config --global user.email "$GITLAB_USER_EMAIL" &&
-    git remote set-url origin "git@github.com:chinmaysahoo19/CSCICD.git"
+    #git remote set-url origin "git@github.com:chinmaysahoo19/CSCICD.git"
 }
 
 
 function validate_version() {
-  git config --list
-  env
-  pwd
-  git pull
-  ls -altr
-  git remote -v
-  git branch
-  git tag
   git describe --abbrev=0 --tags
   GIT_TAG=$(git describe --abbrev=0 --tags)
   PACKAGE_VERSION=v$(jq -r '.version' package.json)
@@ -35,7 +27,7 @@ function validate_version() {
 }
 
 function version-push() {
-  env
+  #env
   git checkout master
   git reset --hard origin/master
   BASE_DIR=$PWD
