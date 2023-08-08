@@ -8,17 +8,21 @@ jobs:
   print-tag:
     runs-on: ubuntu-latest
     steps:
-      - name: "Setup Env"
+      - name: "Git Config"
         run: |
           mkdir -p ~/.ssh
           echo "$GIT_SSH_PK" | base64 -d >~/id_rsa &&
           ssh-keyscan github.com > ~/.ssh/known_hosts
           cp ~/id_rsa  ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
-          #git clone git clone -c "core.sshCommand=ssh -i 360.key -o StrictHostKeyChecking=no "  git@github.com:chinmaysahoo19/CSCICD.git
-          git config --global --add safe.directory "*" &&
-          git clone   -c "core.sshCommand=ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no " git@github.com:chinmaysahoo19/CSCICD.git
+          git config --global --add safe.directory "*"
+
+      - name: Clone Repo
+        run: |
+          git clone  git@github.com:chinmaysahoo19/CSCICD.git
           git config --global user.name "Github Action "
           git config --global user.email "githubaction@github.com"
+      - name: Validate Version
+        run: |
           cd CSCICD/app
           git describe --abbrev=0 --tags
           GIT_TAG=$(git describe --abbrev=0 --tags)
@@ -27,6 +31,8 @@ jobs:
             echo -e "\e[31mVersion does not match latest tag. Please change version in version.json to '${GIT_VERSION}'\e[39m"
           exit 1
           fi
+      - name: Version Push
+        run: |
           git checkout master
           git reset --hard origin/master
           yarn version --patch --no-git-tag-version --no-commit-hooks
@@ -40,17 +46,3 @@ jobs:
           git tag v$version
           git push origin v$version
           git push origin master
-          pwd
-          ls  -ltr
-
-##      - uses: actions/checkout@v3
-##        with:
-##          fetch-depth: 0
-##          ref: ${{ github.ref }}
-##          token: ${{ secrets.MYPAT }}
-##          ssh
-##      - run: |
-##          cd app
-##          #yarn install
-##          git tag
-#          ../.github/workflows/git-utils.sh version-push
