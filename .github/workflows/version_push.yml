@@ -23,7 +23,7 @@ jobs:
       - name: Clone Repo
         run: |
           env
-          git clone  git@github.com:chinmaysahoo19/CSCICD.git .
+          git clone  git@github.com:${GITHUB_REPOSITORY}.git .
 
       - name: Validate Version
         run: |
@@ -40,7 +40,6 @@ jobs:
           fi
       - name: Version Push
         run: |
-          cd CSCICD/app
           git checkout master
           git reset --hard origin/master
           yarn version --patch --no-git-tag-version --no-commit-hooks
