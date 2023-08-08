@@ -10,9 +10,10 @@ jobs:
     steps:
       - name: "Setup Env"
         run: |
+          mkdir -p ~/.ssh
           echo "$GIT_SSH_PK" | base64 -d >~/id_rsa &&
           ssh-keyscan github.com > ~/.ssh/known_hosts
-          mkdir -p ~/.ssh && cp ~/id_rsa  ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
+          cp ~/id_rsa  ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
           #git clone git clone -c "core.sshCommand=ssh -i 360.key -o StrictHostKeyChecking=no "  git@github.com:chinmaysahoo19/CSCICD.git
           git clone  git@github.com:chinmaysahoo19/CSCICD.git
 ##      - uses: actions/checkout@v3
