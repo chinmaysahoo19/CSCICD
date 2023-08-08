@@ -16,9 +16,9 @@ jobs:
           cp ~/id_rsa  ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
           #git clone git clone -c "core.sshCommand=ssh -i 360.key -o StrictHostKeyChecking=no "  git@github.com:chinmaysahoo19/CSCICD.git
           git config --global --add safe.directory "*" &&
+          git clone   git@github.com:chinmaysahoo19/CSCICD.git
           git config --global user.name "Github Action "
           git config --global user.email "githubaction@github.com"
-          git clone   git@github.com:chinmaysahoo19/CSCICD.git
           cd CSCICD/app
           git checkout master
           git reset --hard origin/master
