@@ -8,10 +8,10 @@ function configure_pk() {
 }
 
 function git_configure() {
-  #configure_pk
+  configure_pk
   #git config --global --add safe.directory "*" &&
-    git config --global user.name "$GITHUB_ACTOR"
-    git config --global user.email "{$GITHUB_ACTOR}@samsung.com"
+    #git config --global user.name "$GITHUB_ACTOR"
+    #git config --global user.email "{$GITHUB_ACTOR}@samsung.com"
     #git remote set-url origin "git@github.com:chinmaysahoo19/CSCICD.git"
 }
 
