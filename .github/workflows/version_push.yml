@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
 env:
   INCREMENT_TYPE: patch
-  #GITHUB_TOKEN: ${{ secrets.MYPAT }}
+  GITHUB_TOKEN: ${{ secrets.MYPAT }}
   #GIT_SSH_PK: ${{ secrets.GIT_SSH_PK }}
 jobs:
   print-tag:
@@ -12,6 +12,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
+          token: ${{ env.GITHUB_TOKEN }}
       - run: |
           cd app
           #yarn install
