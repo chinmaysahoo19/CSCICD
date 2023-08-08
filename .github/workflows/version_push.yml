@@ -13,6 +13,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
           #token: ${{ env.GITHUB_TOKEN }}
+          ssh-key: ${{ secrets.GIT_SSH_PK }}
       - run: |
           cd app
           #yarn install
