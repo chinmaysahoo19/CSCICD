@@ -12,8 +12,6 @@ on:
 
 
 env:
-  INCREMENT_TYPE: ${{ inputs.increment_type }}
-  #GITHUB_TOKEN: ${{ secrets.MYPAT }}
   GIT_SSH_PK: ${{ secrets.GIT_SSH_PK }}
 jobs:
   print-tag:
