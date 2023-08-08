@@ -8,7 +8,7 @@ function configure_pk() {
 }
 
 function git_configure() {
-  #configure_pk
+  configure_pk
   #git config --global --add safe.directory "${master_PROJECT_DIR}" &&
     git config --global user.name "$GITHUB_ACTOR"
     #git config --global user.email "$GITLAB_USER_EMAIL" &&
