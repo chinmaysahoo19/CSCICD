@@ -35,7 +35,13 @@ jobs:
         id: get_buildinfo
 
         run: |
+          if [[ ${GITHUB_REF_NAME} == "tag" ]];then
+            echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+          else
+            echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
+          fi
           echo "REACT_APP_GIT_SHA=${{github.sha}}" >> $GITHUB_ENV
+          
           case "${GITHUB_REF_NAME}" in
           "v[0-9]*.[0-9]*.[0-9]*")
             SECRET_ENV_NAME=DEV
