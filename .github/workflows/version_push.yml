@@ -20,6 +20,13 @@ jobs:
           git config --global user.name "Github Action "
           git config --global user.email "githubaction@github.com"
           cd CSCICD/app
+          git describe --abbrev=0 --tags
+          GIT_TAG=$(git describe --abbrev=0 --tags)
+          PACKAGE_VERSION=v$(jq -r '.version' package.json)
+          if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
+            echo -e "\e[31mVersion does not match latest tag. Please change version in version.json to '${GIT_VERSION}'\e[39m"
+          exit 1
+          fi
           git checkout master
           git reset --hard origin/master
           yarn version --patch --no-git-tag-version --no-commit-hooks
