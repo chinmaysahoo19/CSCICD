@@ -35,7 +35,7 @@ jobs:
         id: get_buildinfo
 
         run: |
-          
+  
           if [[ ${GITHUB_REF_TYPE} == "tag" ]];then
              echo "REACT_APP_GIT_SHA=${GITHUB_REF_NAME}" >> $GITHUB_ENV
           else
@@ -43,6 +43,7 @@ jobs:
           fi
           
           case "${GITHUB_REF_NAME}" in
+          
              "v[0-9]*.[0-9]*.[0-9]*")
                SECRET_ENV_NAME=DEV
                #echo "REACT_APP_CLIENTKEY=${{ secrets.DEV_REACT_APP_CLIENTKEY }}" >> $GITHUB_ENV
@@ -63,6 +64,7 @@ jobs:
              SECRET_ENV_NAME=PR
           ;;
           esac
+          
           env
           GID=${{ env.MYENV }}
           echo $GID
