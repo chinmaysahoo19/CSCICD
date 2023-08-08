@@ -15,6 +15,7 @@ jobs:
           #token: ${{ env.GITHUB_TOKEN }}
           ssh-key: ${{ secrets.GIT_SSH_PK }}
           ssh-strict: false
+          ssh-known-hosts: 'github.com'
       - run: |
           cd app
           #yarn install
