@@ -2,8 +2,9 @@
 set -ex
 
 function configure_pk() {
-  echo "$GIT_SSH_PK" | base64 -d >id_rsa &&
-    mkdir -p ~/.ssh && cp id_rsa known_hosts ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
+  ls  -altr
+  echo "$GIT_SSH_PK" | base64 -d >~/id_rsa &&
+  mkdir -p ~/.ssh && cp ~/id_rsa known_hosts ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
 }
 
 function git_configure() {
