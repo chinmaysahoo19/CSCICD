@@ -12,11 +12,12 @@ function git_configure() {
   #git config --global --add safe.directory "${master_PROJECT_DIR}" &&
     git config --global user.name "$GITHUB_ACTOR"
     #git config --global user.email "$GITLAB_USER_EMAIL" &&
-    #git remote set-url origin git@"$master_SERVER_HOST":"$master_PROJECT_PATH".git
+    git remote set-url origin" git@github.com:chinmaysahoo19/CSCICD.git"
 }
 
 
 function validate_version() {
+
   env
   pwd
   git pull
