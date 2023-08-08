@@ -15,7 +15,7 @@ jobs:
           ssh-keyscan github.com > ~/.ssh/known_hosts
           cp ~/id_rsa  ~/.ssh/ && chmod -R 700 ~/.ssh && chmod -R 400 ~/.ssh/*
           #git clone git clone -c "core.sshCommand=ssh -i 360.key -o StrictHostKeyChecking=no "  git@github.com:chinmaysahoo19/CSCICD.git
-          git clone   -c "core.sshCommand=ssh -i ~/id_rsa -o StrictHostKeyChecking=no " git@github.com:chinmaysahoo19/CSCICD.git
+          git clone   -c "core.sshCommand=ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no " git@github.com:chinmaysahoo19/CSCICD.git
 ##      - uses: actions/checkout@v3
 ##        with:
 ##          fetch-depth: 0
