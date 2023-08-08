@@ -52,7 +52,7 @@ jobs:
           cd app
           git checkout master
           git reset --hard origin/master
-          yarn version --patch --no-git-tag-version --no-commit-hooks
+          yarn version --${{ inputs.increment_type }} --no-git-tag-version --no-commit-hooks
           version=$(jq -r '.version' package.json)
           git add package.json
           git commit -m "$BUMP_VERSION_MESSAGE $version"
