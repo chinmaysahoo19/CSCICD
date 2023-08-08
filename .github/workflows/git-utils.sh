@@ -17,7 +17,7 @@ function git_configure() {
 
 
 function validate_version() {
-
+  git config --list
   env
   pwd
   git pull
