@@ -1,3 +1,4 @@
+name: Increment Version & Create Tag
 on:
   workflow_dispatch:
 env:
