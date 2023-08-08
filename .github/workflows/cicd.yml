@@ -1,13 +1,8 @@
 run-name: "First CICD  by @${{ github.actor }}"
 on:
   push:
-    branches:
-      - master
     tags:
       - '*'
-  create:
-    tags:
-      - "*"
 
 env:
   myname: CHINMAYA
