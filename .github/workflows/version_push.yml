@@ -38,6 +38,7 @@ jobs:
           set +x
           cd app
           git pull
+          git checkout stage
           git describe --abbrev=0 --tags
           GIT_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo $GIT_TAG
