@@ -39,7 +39,7 @@ jobs:
           cd app
           git pull
           git describe --abbrev=0 --tags
-          GIT_TAG=$(git describe --abbrev=0 --tags)
+          GIT_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
           PACKAGE_VERSION=v$(jq -r '.version' package.json)
           if [[ "${GIT_TAG}" != "${PACKAGE_VERSION}" ]]; then
             echo -e "\e[31mVersion does not match latest tag. Please change version in version.json to '${GIT_VERSION}'\e[39m"
