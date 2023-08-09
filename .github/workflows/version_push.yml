@@ -35,7 +35,7 @@ jobs:
 
       - name: Validate Version
         run: |
-          set -x
+          set +x
           cd app
           git pull
           git describe --abbrev=0 --tags
@@ -47,7 +47,7 @@ jobs:
           fi
       - name: Version Push
         run: |
-          set -x
+          set +x
           BUMP_VERSION_MESSAGE='Version Push'
           cd app
           git checkout stage
