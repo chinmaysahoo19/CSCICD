@@ -18,8 +18,8 @@ on:
         required: true
         type: choice
         options:
-          - YES
-          - NO
+          - "YES"
+          - "NO"
 env:
   DISTRIBUTION_ID: ${{ vars[format('{0}_DISTRIBUTION_ID', inputs.Env_Name)] }}
   TOGGLE: ${{ inputs.Allow_Robot }}
