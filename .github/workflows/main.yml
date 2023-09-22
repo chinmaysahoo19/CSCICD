@@ -1,0 +1,61 @@
+run-name: Robot Crawling YES NO Amazon S3 - ${{ inputs.Env_Name }}
+name: Robot Crawling YES NO
+on:
+  workflow_dispatch:
+    inputs:
+      Env_Name:
+        description: "Choose Environment Name"
+        default: DEV
+        required: true
+        type: choice
+        options:
+          - DEV
+          - STAGE
+          - PROD
+      Allow_Robot:
+        description: "Allow Crawling True/ False"
+        default: NO
+        required: true
+        type: choice
+        options:
+          - YES
+          - NO
+env:
+  DISTRIBUTION_ID: ${{ vars[format('{0}_DISTRIBUTION_ID', inputs.Env_Name)] }}
+  TOGGLE: ${{ inputs.Allow_Robot }}
+  SECRET_ENV_NAME: ${{ inputs.Env_Name }}
+jobs:
+  build:
+    name: Toggle Crawling
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ vars.CI_ROLE }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Crawling True False
+        id: toggle_on_off
+        run: |
+          LOWER_ENV_NAME=$(echo "$SECRET_ENV_NAME" | tr '[:upper:]' '[:lower:]') 
+          aws s3 cp s3://web.samsungartstore.com.${LOWER_ENV_NAME}/${LOWER_ENV_NAME}/index.html ./
+          aws s3 cp s3://web.samsungartstore.com.${LOWER_ENV_NAME}/${LOWER_ENV_NAME}/robots.txt ./
+          
+          if [[ $TOGGLE == "true" ]]; then
+             sed -e "s#Disallow:.*#Disallow:#g" robots.txt | tee tmp_robots.txt
+             sed -e 's#<meta name="robots"[^>]*>#<meta name="robots" content="all"/>#g' index.html | tee tmp_index.html
+          else
+             sed -e "s#Disallow:.*#Disallow: /#g" robots.txt | tee tmp_robots.txt
+             sed -e 's#<meta name="robots"[^>]*>#<meta name="robots" content="noindex,nofollow"/>#g' index.html  | tee tmp_index.html
+          fi
+          
+          mv  tmp_index.html index.html
+          mv  tmp_robots.txt robots.txt
+          aws s3 cp index.html s3://web.samsungartstore.com.${LOWER_ENV_NAME}/${LOWER_ENV_NAME}index.html
+          aws s3 cp robots.txt s3://web.samsungartstore.com.${LOWER_ENV_NAME}/${LOWER_ENV_NAME}/robots.txt
+          aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/index.html,/robots.txt"
